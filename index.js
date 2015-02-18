@@ -53,6 +53,10 @@ var JUnitReporter = function(baseReporterDecorator, config, logger, helper, form
     }
 
     var result = browser.lastResult;
+    
+     if (null ===  result.total) {
+           result.total = result.failed + result.success + result.skipped;
+         }
 
     suite.att('tests', result.total);
     suite.att('errors', result.disconnected || result.error ? 1 : 0);
